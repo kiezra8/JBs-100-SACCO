@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JB'S 100 SACCO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            background: #1e3a5f;
+            color: white;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        nav ul {
+            list-style: none;
+            float: right;
+            margin-top: 5px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hero Carousel Section - Shorter with text at bottom */
+        .hero {
+            margin-top: 60px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            background: url('https://i.pinimg.com/1200x/0a/14/c5/0a14c5561e923e1fc63e89bc2d17e6df.jpg') center/cover no-repeat;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
+            padding: 40px 5%;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-overlay h1 {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-overlay p {
+            font-size: 1.6rem;
+            font-style: italic;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #1e3a5f;
+            position: relative;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: #4CAF50;
+            margin: 15px auto;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: linear-gradient(135deg, #1e3a5f, #2c5282);
+            color: white;
+            padding: 60px 5%;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3.5rem;
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+
+        .stat-item p {
+            font-size: 1.2rem;
+        }
+
+        /* Services Section */
+        .services {
+            background: #f9f9f9;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            position: relative;
+            height: 450px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-card-bg {
+            transform: scale(1.1);
+        }
+
+        .service-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
+        }
+
+        .service-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 30px;
+            color: white;
+            z-index: 1;
+        }
+
+        .service-content h3 {
+            color: #4CAF50;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .service-content p {
+            color: white;
+            line-height: 1.8;
+            font-size: 1rem;
+        }
+
+        /* Investment Plans */
+        .investment-plans {
+            background: white;
+            margin-top: 40px;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .plan-card {
+            background: linear-gradient(135deg, #1e3a5f, #2c5282);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .plan-card:hover {
+            transform: scale(1.05);
+        }
+
+        .plan-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .plan-card .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin: 20px 0;
+        }
+
+        .plan-card.investor {
+            background: linear-gradient(135deg, #4CAF50, #45a049);
+        }
+
+        /* Founder Message Section */
+        .founder-message {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 100px 5%;
+        }
+
+        .founder-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .founder-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .founder-image img {
+            width: 100%;
+            display: block;
+        }
+
+        .founder-content h2 {
+            font-size: 2.5rem;
+            color: #1e3a5f;
+            margin-bottom: 20px;
+        }
+
+        .founder-content .founder-name {
+            color: #4CAF50;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .founder-content .quote {
+            font-size: 1.2rem;
+            line-height: 2;
+            color: #444;
+            font-style: italic;
+            border-left: 5px solid #4CAF50;
+            padding-left: 30px;
+            margin-bottom: 30px;
+        }
+
+        .founder-content .signature {
+            font-size: 2rem;
+            color: #1e3a5f;
+            font-family: 'Brush Script MT', cursive;
+        }
+
+        /* Articles/News Section */
+        .articles {
+            background: white;
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .article-image {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .article-category {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .article-content {
+            padding: 30px;
+        }
+
+        .article-content h3 {
+            color: #1e3a5f;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .article-content p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .read-more {
+            color: #4CAF50;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .read-more:hover {
+            color: #1e3a5f;
+        }
+
+        /* Why Join Us Section */
+        .why-join {
+            background: #f9f9f9;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-right: 25px;
+        }
+
+        .feature-text h3 {
+            color: #1e3a5f;
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .feature-text p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(135deg, #1e3a5f, #2c5282);
+            color: white;
+            padding: 100px 5%;
+        }
+
+        .testimonials .section-title {
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .testimonial-card .quote-icon {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-author img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+        }
+
+        .testimonial-author h4 {
+            color: #4CAF50;
+            font-size: 1.2rem;
+        }
+
+        .testimonial-author span {
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Farm Visits Section */
+        .farm-visits {
+            background: #f9f9f9;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 300px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        /* Offices Section */
+        .offices {
+            background: white;
+        }
+
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .office-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .office-card img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .office-info {
+            padding: 25px;
+            background: white;
+        }
+
+        .office-info h3 {
+            color: #1e3a5f;
+            margin-bottom: 10px;
+        }
+
+        /* FAQ Section */
+        .faq {
+            background: #f9f9f9;
+        }
+
+        .faq-grid {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 25px 30px;
+            background: #1e3a5f;
+            color: white;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            padding: 25px 30px;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: white;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            color: #1e3a5f;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .contact-detail i {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            margin-right: 15px;
+            width: 40px;
+        }
+
+        .contact-form {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #1e3a5f;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Slogan Section */
+        .slogan-section {
+            background: linear-gradient(135deg, #1e3a5f, #2c5282);
+            color: white;
+            text-align: center;
+            padding: 100px 5%;
+        }
+
+        .slogan-section h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-style: italic;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .slogan-section p {
+            font-size: 1.5rem;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3a5f;
+            color: white;
+            text-align: center;
+            padding: 40px 5%;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.8rem;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4CAF50;
+        }
+
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 35px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(37, 211, 102, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero-overlay h1 {
+                font-size: 2rem;
+            }
+
+            .hero-overlay p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .slogan-section h2 {
+                font-size: 2rem;
+            }
+
+            .founder-container {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                height: 400px;
+            }
+
+            .whatsapp-float {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">JB'S 100 SACCO</div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#founder">Founder</a></li>
+            <li><a href="#articles">Articles</a></li>
+            <li><a href="#testimonials">Testimonials</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section - Shorter with text at bottom -->
+    <section class="hero" id="home">
+        <div class="hero-overlay">
+            <h1>Welcome to JB's 100 Sacco</h1>
+            <p>"We are the change we are badly looking for"</p>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <h3>500+</h3>
+                <p>Active Members</p>
+            </div>
+            <div class="stat-item">
+                <h3>50M+</h3>
+                <p>Total Investments</p>
+            </div>
+            <div class="stat-item">
+                <h3>1000+</h3>
+                <p>Cattle & Goats</p>
+            </div>
+            <div class="stat-item">
+                <h3>Various</h3>
+                <p>Farm Locations</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Empowering members through agricultural innovation and financial growth</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-card-bg" style="background-image: url('https://i.pinimg.com/1200x/48/1b/08/481b0862309ed96fc1a80d5907f2fc52.jpg');"></div>
+                <div class="service-card-overlay"></div>
+                <div class="service-content">
+                    <h3>Cattle Rearing</h3>
+                    <p>Modern livestock management with high-quality breeds. We provide expert care, veterinary services, and sustainable farming practices for maximum productivity and profit. Our members benefit from shared knowledge and collective bargaining power.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-bg" style="background-image: url('https://i.pinimg.com/736x/31/ad/f5/31adf54ec25c777fa79c0dad40e89173.jpg');"></div>
+                <div class="service-card-overlay"></div>
+                <div class="service-content">
+                    <h3>Goat Rearing</h3>
+                    <p>Specialized goat farming programs focusing on dairy and meat production. Our members benefit from quality breeds, feeding programs, and market linkages. Join our growing community of successful goat farmers.</p>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-card-bg" style="background-image: url('https://i.pinimg.com/736x/56/34/19/56341972fea83de14196300ec7b410fb.jpg');"></div>
+                <div class="service-card-overlay"></div>
+                <div class="service-content">
+                    <h3>Member Savings & Investments</h3>
+                    <p>Secure your future with our flexible savings plans. Regular contributions grow through our agricultural investments and livestock programs with competitive returns. Your money works harder with us.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Investment Plans -->
+        <div class="investment-plans">
+            <h3 style="text-align: center; font-size: 2rem; color: #1e3a5f; margin-bottom: 20px;">Membership Investment Plans</h3>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>Regular Shares</h3>
+                    <p>Join as a regular member and own shares in our cooperative</p>
+                    <div class="price">100K</div>
+                    <p>Per Share</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Access to all sacco services, farm visits, and dividend sharing</p>
+                </div>
+
+                <div class="plan-card investor">
+                    <h3>Phase 3 - Investors</h3>
+                    <p>Premium membership for serious investors</p>
+                    <div class="price">8M</div>
+                    <p>Investment Package</p>
+                    <p style="margin-top: 15px; font-size: 0.9rem;">Exclusive benefits, priority returns, leadership opportunities, and major project participation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Founder Message Section -->
+    <section class="founder-message" id="founder">
+        <div class="founder-container">
+            <div class="founder-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKVPHojbBwgKw3D3uarkHM_sKDrwUBA3mXE3QyzHM4woVNCZjUMPsCJiaW&s=10" alt="Mr. JB Halera - Founder">
+            </div>
+            <div class="founder-content">
+                <h2>A Message from Our Founder</h2>
+                <div class="founder-name">Mr. JB Halera</div>
+                <div class="quote">
+                    "When I founded JB's 100 Sacco, I had a vision - a vision of empowered communities, of farmers who no longer struggle alone, of individuals who can build wealth through collective effort. We saw a gap in traditional financial systems that left many behind, especially in the agricultural sector.<br><br>
+                    
+                    Our sacco is not just about saving money or rearing livestock. It's about creating a movement - a movement where ordinary people come together to achieve extraordinary things. We are the change agents our communities have been waiting for.<br><br>
+                    
+                    Through our innovative model combining agriculture and cooperative savings, we've helped hundreds of members transform their lives. From cattle rearing to goat farming, from small savings to major investments - we provide the platform, the expertise, and the support system.<br><br>
+                    
+                    I invite you to join us. Whether you're investing 100K in shares or joining our Phase 3 investor program at 8M, you're not just putting money in - you're investing in a vision. You're becoming part of a family that believes in mutual growth, shared success, and sustainable development.<br><br>
+                    
+                    Remember, we are the change we are badly looking for. The power to transform our communities lies in our hands. Together, we rise. Together, we prosper."
+                </div>
+                <div class="signature">JB Halera</div>
+                <p style="margin-top: 10px; color: #666; font-style: italic;">Founder & CEO, JB's 100 Sacco</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles/News Section -->
+    <section class="articles" id="articles">
+        <h2 class="section-title">Member Success Stories & Insights</h2>
+        <p class="section-subtitle">Discover how our members are transforming their lives through JB's 100 Sacco</p>
+        
+        <div class="articles-grid">
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/736x/c5/08/00/c508007faa7a23c43be2956577e56bad.jpg');">
+                    <span class="article-category">Success Story</span>
+                </div>
+                <div class="article-content">
+                    <h3>From Zero to Hero: How Cooperative Farming Changed My Life</h3>
+                    <p>Meet Sarah, a member who started with just one share and now owns 50 cattle through our collective investment program. Her journey from struggling farmer to successful agri-entrepreneur showcases the power of cooperative savings and shared resources.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> July 15, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/1200x/2f/04/8e/2f048e511298100d76e890df80540869.jpg');">
+                    <span class="article-category">Investment Tips</span>
+                </div>
+                <div class="article-content">
+                    <h3>Why Livestock Investment Outperforms Traditional Savings</h3>
+                    <p>Our analysis shows that members who invest in our cattle and goat rearing programs see an average return of 35% annually, compared to 8-12% from conventional savings accounts. Learn how agricultural investments can secure your financial future.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> July 10, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/1200x/30/d0/f1/30d0f181e0298458734e6875ec45d8d1.jpg');">
+                    <span class="article-category">Community Impact</span>
+                </div>
+                <div class="article-content">
+                    <h3>Building Wealth Together: The Power of Collective Investment</h3>
+                    <p>When 500 members each invest 100K, magic happens. Our pooled resources allow us to access opportunities no individual could afford alone. From bulk purchasing to premium market access, discover the advantages of cooperative economics.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> July 5, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/1200x/db/d3/19/dbd319411796180fbe9199898f69c182.jpg');">
+                    <span class="article-category">Member Benefits</span>
+                </div>
+                <div class="article-content">
+                    <h3>Beyond Savings: The Holistic Benefits of Sacco Membership</h3>
+                    <p>Financial growth is just the beginning. Our members gain access to training programs, veterinary expertise, market networks, and a supportive community. Explore the comprehensive benefits that make JB's 100 Sacco more than just an investment.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> June 28, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/736x/56/34/19/56341972fea83de14196300ec7b410fb.jpg');">
+                    <span class="article-category">Financial Planning</span>
+                </div>
+                <div class="article-content">
+                    <h3>Planning for Phase 3: Is the 8M Investor Package Right for You?</h3>
+                    <p>Our Phase 3 investor program offers exclusive opportunities for serious wealth builders. With 8M investment, members access premium projects, leadership roles, and enhanced returns. Learn if this elite tier matches your financial goals.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> June 20, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+
+            <article class="article-card">
+                <div class="article-image" style="background-image: url('https://i.pinimg.com/736x/31/ad/f5/31adf54ec25c777fa79c0dad40e89173.jpg');">
+                    <span class="article-category">Sustainability</span>
+                </div>
+                <div class="article-content">
+                    <h3>Sustainable Farming: How We Protect Tomorrow While Profiting Today</h3>
+                    <p>Environmental stewardship and profitability go hand in hand. Our sustainable farming practices ensure long-term productivity while protecting natural resources. See how our members contribute to a greener future while building wealth.</p>
+                    <div class="article-meta">
+                        <span><i class="far fa-calendar"></i> June 15, 2026</span>
+                        <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- Why Join Us Section -->
+    <section class="why-join">
+        <h2 class="section-title">Why Join JB's 100 Sacco?</h2>
+        <p class="section-subtitle">Discover the advantages that set us apart</p>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>High Returns on Investment</h3>
+                    <p>Our agricultural investments consistently outperform traditional savings accounts, with average annual returns of 25-35% on livestock projects.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Strong Community Network</h3>
+                    <p>Join 500+ like-minded individuals committed to mutual growth. Share knowledge, access opportunities, and build lasting business relationships.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Expert Training & Support</h3>
+                    <p>Access free training programs in livestock management, financial planning, and agribusiness. Our experts guide you every step of the way.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Secure & Regulated</h3>
+                    <p>Fully registered and regulated sacco with transparent operations. Your investments are protected and managed with the highest standards.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-hand-holding-usd"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Flexible Loan Facilities</h3>
+                    <p>Access low-interest loans up to 3x your savings for business expansion, education, or emergency needs. Quick approval for active members.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-globe-africa"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Market Access & Linkages</h3>
+                    <p>Benefit from our established market networks. We connect you directly to buyers, ensuring better prices for your livestock and produce.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Modern Farm Infrastructure</h3>
+                    <p>Access 15+ modern farm facilities across the region. State-of-the-art equipment, veterinary services, and optimal breeding conditions.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-percentage"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Dividend Sharing</h3>
+                    <p>Annual profit sharing based on your participation and shares. The more you invest and engage, the more you earn from our collective success.</p>
+                </div>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="feature-text">
+                    <h3>Digital Banking Convenience</h3>
+                    <p>Manage your account anytime, anywhere. Mobile banking, online statements, and instant notifications keep you connected to your investments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <h2 class="section-title">What Our Members Say</h2>
+        <p class="section-subtitle" style="color: #ddd;">Real stories from real members who transformed their lives</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"I joined JB's 100 Sacco three years ago with just one share. Today, I own 15 cattle and 30 goats through the cooperative program. The training I received and the support from fellow members has been incredible. This is truly the change we needed."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pinimg.com/736x/c5/08/00/c508007faa7a23c43be2956577e56bad.jpg" alt="Member">
+                    <div>
+                        <h4>John Mukasa</h4>
+                        <span>Member since 2023</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"As a Phase 3 investor, I've seen my 8M investment grow significantly. But beyond the returns, I'm proud to be part of a movement that's empowering communities. Mr. Halera's vision is transforming lives, and I'm honored to be part of it."</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pinimg.com/1200x/30/d0/f1/30d0f181e0298458734e6875ec45d8d1.jpg" alt="Member">
+                    <div>
+                        <h4>Grace Nakato</h4>
+                        <span>Phase 3 Investor</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+                <p>"The best decision I made was joining this sacco. The collective buying power means we get better prices for our animals. The veterinary support is excellent, and the dividends keep coming. We are indeed the change we were looking for!"</p>
+                <div class="testimonial-author">
+                    <img src="https://i.pinimg.com/1200x/db/d3/19/dbd319411796180fbe9199898f69c182.jpg" alt="Member">
+                    <div>
+                        <h4>David Ochieng</h4>
+                        <span>Member since 2024</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farm Visits Section -->
+    <section class="farm-visits" id="farm-visits">
+        <h2 class="section-title">Farm Visits & Member Activities</h2>
+        <p class="section-subtitle">Our members actively participate in farm inspections and agricultural activities</p>
+        
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/736x/c5/08/00/c508007faa7a23c43be2956577e56bad.jpg" alt="Members Visiting Farm">
+                <div class="gallery-caption">Members inspecting livestock at our partner farms</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/1200x/2f/04/8e/2f048e511298100d76e890df80540869.jpg" alt="Farm Tour">
+                <div class="gallery-caption">Educational farm tours and knowledge sharing sessions</div>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.pinimg.com/1200x/30/d0/f1/30d0f181e0298458734e6875ec45d8d1.jpg" alt="Sacco Office">
+                <div class="gallery-caption">Modern office facilities serving our members</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Offices Section -->
+    <section class="offices" id="offices">
+        <h2 class="section-title">Our Facilities</h2>
+        <p class="section-subtitle">State-of-the-art infrastructure to serve you better</p>
+        
+        <div class="office-grid">
+            <div class="office-card">
+                <img src="https://i.pinimg.com/1200x/db/d3/19/dbd319411796180fbe9199898f69c182.jpg" alt="Main Office">
+                <div class="office-info">
+                    <h3>Main Office</h3>
+                    <p>Our modern headquarters equipped with state-of-the-art facilities to serve members efficiently. Professional staff ready to assist with all your sacco needs.</p>
+                </div>
+            </div>
+
+            <div class="office-card">
+                <img src="https://i.pinimg.com/1200x/48/1b/08/481b0862309ed96fc1a80d5907f2fc52.jpg" alt="Agricultural Projects">
+                <div class="office-info">
+                    <h3>Agricultural Projects</h3>
+                    <p>Multiple farm locations across the region where members can visit, learn, and participate in our livestock and agricultural investment programs.</p>
+                </div>
+            </div>
+
+            <div class="office-card">
+                <img src="https://i.pinimg.com/736x/56/34/19/56341972fea83de14196300ec7b410fb.jpg" alt="Member Services">
+                <div class="office-info">
+                    <h3>Member Services Center</h3>
+                    <p>Dedicated spaces for member meetings, financial consultations, and investment planning sessions. Building community through cooperation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <h2 class="section-title">Frequently Asked Questions</h2>
+        <p class="section-subtitle">Find answers to common questions about our sacco</p>
+        
+        <div class="faq-grid">
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I become a member of JB's 100 Sacco?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Simply purchase at least one share at 100K. Visit our offices or contact us online to start the registration process. You'll need valid ID, proof of income, and completion of our membership form. Once approved, you can start enjoying all member benefits immediately.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What's the difference between regular shares and Phase 3 investment?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Regular shares cost 100K per share and give you access to all basic sacco services, dividends, and farm programs. Phase 3 is an 8M investment package for serious investors, offering exclusive project participation, leadership opportunities, priority returns, and involvement in major agricultural ventures.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    How often are dividends paid?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Dividends are calculated and paid annually based on the sacco's performance and your level of participation. Our agricultural investments typically generate returns of 25-35% annually, which are shared among members proportionally.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Can I access loans as a new member?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Yes! After 6 months of active membership and regular savings, you can access loans up to 3x your total savings at competitive interest rates. Emergency loans are available sooner with flexible repayment terms.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What happens if I want to withdraw my shares?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Members can withdraw shares with a 90-day notice period. This allows us to manage our agricultural investments properly. Your shares will be valued at current market value, and you'll receive your principal plus any accrued dividends.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do I need farming experience to join?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Not at all! We provide comprehensive training and expert support for all members. Our team handles the day-to-day farm management, and you receive regular updates and can participate in farm visits. Many of our successful members started with zero farming experience.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Ready to join the change? Contact us today</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Start Your Journey</h3>
+                <p style="margin-bottom: 30px; color: #666; line-height: 1.8;">Whether you're ready to invest or just have questions, we're here to help. Our team is committed to making your membership experience smooth and rewarding.</p>
+                
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Visit Us</strong><br>
+                        JB's 100 Sacco Headquarters<br>
+                        Main Street, Business District
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Call Us</strong><br>
+                        0792505557<br>
+                        0792505557
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email Us</strong><br>
+                        info@jbs100sacco.com<br>
+                        support@jbs100sacco.com
+                    </div>
+                </div>
+
+                <div class="contact-detail">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <strong>Office Hours</strong><br>
+                        Monday - Friday: 8:00 AM - 5:00 PM<br>
+                        Saturday: 9:00 AM - 1:00 PM
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="interest">I'm Interested In</label>
+                        <input type="text" id="interest" name="interest" placeholder="e.g., Regular Shares, Phase 3 Investment">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; border: none; cursor: pointer; background: #4CAF50; color: white; padding: 15px; border-radius: 50px; font-weight: bold; font-size: 1rem;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slogan Section -->
+    <section class="slogan-section">
+        <h2>"We are the change we are badly looking for"</h2>
+        <p>Join JB's 100 Sacco Today and Be Part of the Transformation</p>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+        </div>
+        <p><strong>JB'S 100 SACCO</strong></p>
+        <p>Empowering Communities Through Agricultural Investment</p>
+        <p style="margin-top: 20px;"><i class="fas fa-phone"></i> 0792505557 | <i class="fas fa-envelope"></i> info@jbs100sacco.com</p>
+        <p style="margin-top: 20px;">&copy; 2026 JB'S 100 SACCO. All Rights Reserved.</p>
+        <p style="margin-top: 10px; font-size: 0.9rem;">Registered and Regulated Financial Cooperative</p>
+    </footer>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/256792505557" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.display === 'none' || !answer.style.display) {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+
+        // Initialize FAQ answers as hidden
+        document.querySelectorAll('.faq-answer').forEach(answer => {
+            answer.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
