@@ -74,22 +74,27 @@
             left: 0;
             right: 0;
             background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.4));
-            padding: 40px 5%;
+            padding: 30px 5% 24px;
             color: white;
-            text-align: center;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-end;
         }
 
         .hero-overlay h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
+            font-size: 2.2rem;
+            margin-bottom: 0.4rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
         .hero-overlay p {
-            font-size: 1.6rem;
+            font-size: 1.1rem;
             font-style: italic;
             color: #4CAF50;
             font-weight: bold;
+            max-width: 560px;
         }
 
         /* Section Styling */
@@ -125,24 +130,26 @@
         .stats {
             background: linear-gradient(135deg, #1e3a5f, #2c5282);
             color: white;
-            padding: 60px 5%;
+            padding: 24px 5% 28px;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 16px;
             text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
         .stat-item h3 {
-            font-size: 3.5rem;
+            font-size: 1.8rem;
             color: #4CAF50;
-            margin-bottom: 10px;
+            margin-bottom: 4px;
         }
 
         .stat-item p {
-            font-size: 1.2rem;
+            font-size: 0.95rem;
         }
 
         /* Services Section */
@@ -220,11 +227,8 @@
 
         /* Investment Plans */
         .investment-plans {
-            background: white;
-            margin-top: 40px;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            background: #f9f9f9;
+            padding: 60px 5%;
         }
 
         .plans-grid {
@@ -888,27 +892,6 @@
             </div>
         </div>
 
-        <!-- Investment Plans -->
-        <div class="investment-plans">
-            <h3 style="text-align: center; font-size: 2rem; color: #1e3a5f; margin-bottom: 20px;">Membership Investment Plans</h3>
-            <div class="plans-grid">
-                <div class="plan-card">
-                    <h3>Regular Shares</h3>
-                    <p>Join as a regular member and own shares in our cooperative</p>
-                    <div class="price">100K</div>
-                    <p>Per Share</p>
-                    <p style="margin-top: 15px; font-size: 0.9rem;">Access to all sacco services, farm visits, and dividend sharing</p>
-                </div>
-
-                <div class="plan-card investor">
-                    <h3>Phase 3 - Investors</h3>
-                    <p>Premium membership for serious investors</p>
-                    <div class="price">8M</div>
-                    <p>Investment Package</p>
-                    <p style="margin-top: 15px; font-size: 0.9rem;">Exclusive benefits, priority returns, leadership opportunities, and major project participation</p>
-                </div>
-            </div>
-        </div>
     </section>
 
     <!-- Founder Message Section -->
@@ -933,6 +916,29 @@
                 </div>
                 <div class="signature">JB Halera</div>
                 <p style="margin-top: 10px; color: #666; font-style: italic;">Founder & CEO, JB's 100 Sacco</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Membership Investment Plans -->
+    <section class="investment-plans" id="plans">
+        <h2 class="section-title">Membership Investment Plans</h2>
+        <p class="section-subtitle">Flexible options for growing with JB's 100 Sacco</p>
+        <div class="plans-grid">
+            <div class="plan-card">
+                <h3>Regular Shares</h3>
+                <p>Join as a regular member and own shares in our cooperative</p>
+                <div class="price">100K</div>
+                <p>Per Share</p>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Access to all sacco services, farm visits, and dividend sharing</p>
+            </div>
+
+            <div class="plan-card investor">
+                <h3>Phase 3 - Investors</h3>
+                <p>Premium membership for serious investors</p>
+                <div class="price">8M</div>
+                <p>Investment Package</p>
+                <p style="margin-top: 15px; font-size: 0.9rem;">Exclusive benefits, priority returns, leadership opportunities, and major project participation</p>
             </div>
         </div>
     </section>
